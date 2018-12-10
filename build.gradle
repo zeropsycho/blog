@@ -1,0 +1,34 @@
+buildscript {
+	ext {
+		springBootVersion = '1.5.18.RELEASE'
+	}
+    // 仓库地址（默认使用maven仓库）
+	repositories {
+		mavenCentral()
+	}
+//  spring版本
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+//  组件加载信息
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+//
+group = 'com.zero.blog'
+version = '0.0.1-SNAPSHOT'
+//  jdk版本
+sourceCompatibility = 1.8
+//  依赖包
+repositories {
+	mavenCentral()
+}
+
+
+dependencies {
+	implementation('org.springframework.boot:spring-boot-starter-web')
+	testImplementation('org.springframework.boot:spring-boot-starter-test')
+    // https://mvnrepository.com/artifact/mysql/mysql-connector-java
+    compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.38'
+}
