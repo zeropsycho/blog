@@ -22,7 +22,7 @@ public interface UserService {
 
     int delUser(Long id);
 
-    List<ZBlogUser> userList(ZBlogUser zBlogUser);
-
     ZBlogUser getUser(ZBlogUser zBlogUser);
+
+    Result userList(ZBlogUser zBlogUser);
 }

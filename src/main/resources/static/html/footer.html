@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<!--
+底部共用页面-->
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <title>this My blog</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<div th:fragment="footer">
+    <a href="/blog/api/user/list" th:href="@{~/blog/api/user/list}">Welcome to Blog</a>
+    ${#calendars.format(cal)}
+</div>
+</body>
+</html>

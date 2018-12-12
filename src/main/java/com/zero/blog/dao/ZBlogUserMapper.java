@@ -3,6 +3,8 @@ package com.zero.blog.dao;
 import com.zero.blog.entity.ZBlogUser;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 @Mapper
 public interface ZBlogUserMapper {
     /**
@@ -52,4 +54,6 @@ public interface ZBlogUserMapper {
      * @mbggenerated
      */
     int updateByPrimaryKey(ZBlogUser record);
+
+    List<ZBlogUser> userList(ZBlogUser zBlogUser);
 }

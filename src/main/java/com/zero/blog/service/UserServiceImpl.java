@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -30,6 +31,7 @@ public class UserServiceImpl implements UserService {
 
     /**
      * 新增用户
+     *
      * @param zBlogUser
      * @return
      */
@@ -45,12 +47,13 @@ public class UserServiceImpl implements UserService {
             throw new UserException();
         }
         int result = 0;
-        try {
-             result = zBlogUserMapper.insertSelective(zBlogUser);
-        } catch (Exception ex) {
-            //log.error("【SQL ERROR】", ex);
-            throw new RuntimeException(ex.getMessage());
-        }
+        //try {
+        zBlogUser.setLoginCount(1L);
+        result = zBlogUserMapper.insertSelective(zBlogUser);
+        //} catch (Exception ex) {
+        //log.error("【SQL ERROR】", ex);
+        //throw new RuntimeException(ex.getMessage());
+        //}
 
         if (result > 0) {
             ResultUtil.success(ResultEnum.SUCCESS.getCode(), ResultEnum.SUCCESS.getMsg(), null);
@@ -74,8 +77,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<ZBlogUser> userList(ZBlogUser zBlogUser) {
-        return null;
+    public Result userList(ZBlogUser zBlogUser) {
+        List<ZBlogUser> zBlogUserList = new ArrayList<>();
+        zBlogUserList = zBlogUserMapper.userList(zBlogUser);
+        return ResultUtil.success(ResultEnum.SUCCESS.getCode(), ResultEnum.SUCCESS.getMsg(), zBlogUserList);
     }
 
     @Override

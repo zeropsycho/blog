@@ -13,6 +13,8 @@ public class Result {
 
     private String message;
 
+    private String explain;
+
     private Object data;
 
     public int getCode() {
@@ -31,11 +33,29 @@ public class Result {
         this.message = message;
     }
 
+    public String getExplain() {
+        return explain;
+    }
+
+    public void setExplain(String explain) {
+        this.explain = explain;
+    }
+
     public Object getData() {
         return data;
     }
 
     public void setData(Object data) {
         this.data = data;
+    }
+
+    @Override
+    public String toString() {
+        return "Result{" +
+                "code=" + code +
+                ", message='" + message + '\'' +
+                ", explain='" + explain + '\'' +
+                ", data=" + data +
+                '}';
     }
 }

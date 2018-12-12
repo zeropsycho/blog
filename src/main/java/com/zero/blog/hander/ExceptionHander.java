@@ -6,6 +6,7 @@ import com.zero.blog.exception.UserException;
 import com.zero.blog.util.ResultUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -29,13 +30,13 @@ public class ExceptionHander {
     public Result hander(Exception e) {
         if (e instanceof UserException) {
             UserException user = (UserException) e;
-            return ResultUtil.error(user.getCode(), user.getMessage());
-        } else if (e instanceof SQLException) {
+            return ResultUtil.error(user.getCode(), user.getMessage(), null);
+        } else if (e instanceof DataIntegrityViolationException || e instanceof SQLException) {
             LOG.error("【SQL ERROR】", e);
-            return ResultUtil.error(ResultEnum.SQL_ERROR.getCode(), e.getMessage());
+            return ResultUtil.error(ResultEnum.SQL_ERROR.getCode(), ResultEnum.SQL_ERROR.getMsg(), e.getMessage());
         } else {
             LOG.error("【System error】", e);
-            return ResultUtil.error(-1, "未知异常");
+            return ResultUtil.error(-1, "未知异常", null);
         }
     }
 }

@@ -27,6 +27,13 @@ public class ResultUtil {
         return result;
     }
 
+    public static Result success(int code, String msg) {
+        Result result = new Result();
+        result.setCode(code);
+        result.setMessage(msg);
+        return result;
+    }
+
     public static Result success(int code, String msg, Object data) {
         Result result = new Result();
         result.setCode(code);
@@ -35,10 +42,11 @@ public class ResultUtil {
         return result;
     }
 
-    public static Result error(int code, String message) {
+    public static Result error(int code, String message, String explain) {
         Result result = new Result();
         result.setCode(code);
         result.setMessage(message);
+        result.setExplain(explain);
         return result;
     }
 }
